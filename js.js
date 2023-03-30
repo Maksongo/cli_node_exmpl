@@ -1,24 +1,50 @@
-// const readline = require("readline").createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-// });
-
-// readline.question("what color do u like? 😈\n", (color) => {
-//     console.log(`Hey there ${color}!`);
-//   readline.close();
-// });
-
-import inquirer from 'inquirer';
+import inquirer from "inquirer";
+import fs from "fs";
 
 inquirer
   .prompt([
     {
-      type: 'list',
-      name: 'typeOfColor',
-      message: 'what color do u like? 😈',
-      choices: ['red', 'black', 'white','purple'],
+      type: "list",
+      name: "typeOfColor",
+      message: "what color do u like? 😈",
+      choices: ["red", "black", "white", "purple"],
     },
   ])
-  .then(answers => {
-    console.info('Answer:', answers.typeOfColor);
+  .then((answers) => {
+    console.info("Answer:", answers.typeOfColor);
+
+    switch (answers.typeOfColor) {
+      case "red":
+        fs.writeFileSync(
+          "hello.css",
+          `body {
+  background: #fc0303;
+}`
+        );
+        break;
+      case "black":
+        fs.writeFileSync(
+          "hello.css",
+          `body {
+  background: #000000;
+}`
+        );
+        break;
+      case "white":
+        fs.writeFileSync(
+          "hello.css",
+          `body {
+  background: #ffffff;
+}`
+        );
+        break;
+      case "purple":
+        fs.writeFileSync(
+          "hello.css",
+          `body {
+  background: #b800d9;
+}`
+        );
+        break;
+    }
   });
