@@ -1,6 +1,15 @@
 import inquirer from "inquirer";
 import fs from "fs";
 
+let writeCssResault = (hex) => {
+  fs.writeFileSync(
+    "hello.css",
+    `body {
+    background: ${hex};
+}`
+  );
+};
+
 inquirer
   .prompt([
     {
@@ -15,36 +24,16 @@ inquirer
 
     switch (answers.typeOfColor) {
       case "red":
-        fs.writeFileSync(
-          "hello.css",
-          `body {
-  background: #fc0303;
-}`
-        );
+        writeCssResault("#fc0303");
         break;
       case "black":
-        fs.writeFileSync(
-          "hello.css",
-          `body {
-  background: #000000;
-}`
-        );
+        writeCssResault("#000000");
         break;
       case "white":
-        fs.writeFileSync(
-          "hello.css",
-          `body {
-  background: #ffffff;
-}`
-        );
+        writeCssResault("#ffffff");
         break;
       case "purple":
-        fs.writeFileSync(
-          "hello.css",
-          `body {
-  background: #b800d9;
-}`
-        );
+        writeCssResault("#b800d9");
         break;
     }
   });
